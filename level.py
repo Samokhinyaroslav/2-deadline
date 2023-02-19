@@ -28,7 +28,6 @@ class Level:
     player_image = load_image('radish.png')
     grater_image = load_image('grater.png')
 
-
     tile_width = tile_height = 50
 
     def __init__(self, filename):
@@ -46,12 +45,14 @@ class Level:
         # спавнятся точки, чтобы строки были одной длины
         return list(map(lambda x: x.ljust(max_width, '.'), level_map))
 
-    def generate_level(self, tile_module, character_module, player_group, enemy_group, tile_group, platform_group, control_point_group, all_sprites):
+    def generate_level(self, tile_module, character_module, player_group, enemy_group, tile_group, platform_group,
+                       control_point_group, all_sprites):
         new_player, x, y = None, None, None
         for y in range(len(self.data_level)):
             for x in range(len(self.data_level[y])):
                 if self.data_level[y][x] == '#':
-                    tile_module.Tile(self.tile_images['platform'], (x, y), (50, 50), platform_group, tile_group, all_sprites)
+                    tile_module.Tile(self.tile_images['platform'], (x, y), (50, 50), platform_group, tile_group,
+                                     all_sprites)
 
                 elif self.data_level[y][x] == '+':
                     tile_module.Tile(self.tile_images['empty'], (x, y), (50, 50), tile_group, all_sprites)
@@ -59,22 +60,23 @@ class Level:
 
                 elif self.data_level[y][x] == '@':
                     tile_module.Tile(self.tile_images['empty'], (x, y), (50, 50), tile_group, all_sprites)
-                    new_player = character_module.Radish(self.player_image, (x, y), (50, 50), 70, player_group, all_sprites)
+                    new_player = character_module.Radish(self.player_image, (x, y), (50, 50), 70, player_group,
+                                                         all_sprites)
 
                 elif self.data_level[y][x] == '/':
-                    tile_module.Tile(self.tile_images['house'], (x, y), (50, 50), control_point_group, tile_group, all_sprites)
+                    tile_module.Tile(self.tile_images['house'], (x, y), (50, 50), control_point_group, tile_group,
+                                     all_sprites)
 
                 elif self.data_level[y][x] == '-':
                     tile_module.Tile(self.tile_images['empty'], (x, y), (50, 50), enemy_group, all_sprites)
 
-
         return new_player, x, y
+
 
 class Camera:
     # зададим начальный сдвиг камеры
     def __init__(self):
         self.dx = 0
-
 
     # сдвинуть объект obj на смещение камеры
     def apply(self, obj):
@@ -83,7 +85,3 @@ class Camera:
     # позиционировать камеру на объекте target
     def update(self, target, width, height):
         self.dx = -(target.rect.x + target.rect.w // 2 - width // 2)
-
-
-
-

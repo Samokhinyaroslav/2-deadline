@@ -1,6 +1,7 @@
 import pygame
 import pygame_menu
 
+
 def create_theme_menu():
     myimage = pygame_menu.baseimage.BaseImage(
         image_path="data/Prew2.jpg",
@@ -8,9 +9,9 @@ def create_theme_menu():
         drawing_offset=(0, 0)
     )
     mytheme = pygame_menu.Theme(background_color=myimage,
-                                      title_background_color=(193, 0, 113),
-                                      title_font_shadow=True,
-                                      widget_padding=30)
+                                title_background_color=(193, 0, 113),
+                                title_font_shadow=True,
+                                widget_padding=30)
     return mytheme
 
 

@@ -29,7 +29,6 @@ class Radish(pygame.sprite.Sprite):
         if self.on_ground:
             self.rect.y -= self.power_jump
 
-
     def go_in_house(self, control_point_group):
         if pygame.sprite.spritecollideany(self, control_point_group):
             return True
@@ -57,16 +56,12 @@ class Radish(pygame.sprite.Sprite):
                 if self.rect.top + platform.rect.width // 2 >= platform.rect.bottom:
                     self.rect.top = platform.rect.bottom
 
-
         if pygame.sprite.spritecollideany(self, enemy_group):
             self.kill()
-
 
     def update(self, *args):
         if args:
             self.walk(args[0])
-
-
 
 
 class Grater(pygame.sprite.Sprite):
@@ -82,7 +77,3 @@ class Grater(pygame.sprite.Sprite):
 
     def update(self, *args):
         self.run()
-
-
-
-

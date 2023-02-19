@@ -7,4 +7,3 @@ class Tile(pygame.sprite.Sprite):
         self.image = tile_image
         self.rect = self.image.get_rect().move(
             size[0] * pos[0], size[1] * pos[1])
-

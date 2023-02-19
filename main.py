@@ -11,9 +11,9 @@ def create_theme_menu():
         drawing_offset=(0, 0)
     )
     mytheme = pygame_menu.Theme(background_color=myimage,
-                                      title_background_color=(255, 158, 158),
-                                      title_font_shadow=True,
-                                      widget_padding=27)
+                                title_background_color=(255, 158, 158),
+                                title_font_shadow=True,
+                                widget_padding=27)
     return mytheme
 
 
@@ -29,7 +29,7 @@ def start_menu(screen, size_screen, theme_menu=None):
     menu.mainloop(screen)
 
 
-def print_text(message, x, y, font_color = (0, 0, 0), font_type = 'data/PINGPONG.TTF', font_size=30):
+def print_text(message, x, y, font_color=(0, 0, 0), font_type='data/PINGPONG.TTF', font_size=30):
     font_type = pygame.font.Font(font_type, font_size)
     text = font_type.render(message, True, font_color)
     screen.blit(text, (x, y))
@@ -43,6 +43,7 @@ def win(screen, win_image):
                 running = False
         screen.blit(win_image, (0, 0))
         pygame.display.flip()
+
 
 def game_over(screen, background_game_img):
     running = True
@@ -82,7 +83,6 @@ def game(screen, background_game_img):
             win(screen, win_image)
         all_sprites.update()
 
-
         tiles_group.draw(screen)
         player_group.draw(screen)
         enemy_group.draw(screen)
@@ -91,6 +91,7 @@ def game(screen, background_game_img):
         pygame.display.flip()
     pygame.quit()
     sys.exit()
+
 
 if __name__ == '__main__':
     pygame.init()
@@ -108,6 +109,7 @@ if __name__ == '__main__':
     control_point_group = pygame.sprite.Group()
     player_group = pygame.sprite.Group()
     lvl = Level('data/lvl.txt')
-    player, level_x, level_y = lvl.generate_level(tile_module,  character_module, player_group, enemy_group, tiles_group, platform_group, control_point_group, all_sprites)
+    player, level_x, level_y = lvl.generate_level(tile_module, character_module, player_group, enemy_group, tiles_group,
+                                                  platform_group, control_point_group, all_sprites)
     camera = Camera()
     start_menu(screen, size, create_theme_menu())
