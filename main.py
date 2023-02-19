@@ -50,7 +50,6 @@ def win(screen, win_image):
 
 def game_over(screen, background_game_img):
     running = True
-    print('over')
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -122,7 +121,7 @@ def game(screen, background_game_img):
 if __name__ == '__main__':
     pygame.init()
     background_game_img = pygame.image.load("data/background.png")
-    win_image = pygame.image.load('data/win.jpg')
+    win_image = pygame.image.load('data/windik.jpg')
     gameover_image = pygame.image.load("data/gameover_image.jpg")
     # win_image = pygame.image.load('data/win.jpg')
     size = width, height = 700, 400
