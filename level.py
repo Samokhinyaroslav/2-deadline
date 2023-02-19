@@ -24,10 +24,12 @@ class Level:
     tile_images = {
         'platform': load_image('block.png'),
         'empty': load_image('fon.png'),
-        'house': load_image('house.png')
+        'house': load_image('house.png'),
+
     }
     player_image = load_image('radish.png')
     grater_image = load_image('grater.png')
+
 
     tile_width = tile_height = 50
 
@@ -41,7 +43,7 @@ class Level:
             level_map = [line.strip() for line in mapFile]
 
         # и подсчитываем максимальную длину
-        max_width = max(map(len, level_map))
+        max_width = max(map(len, level_map))  # спавнятся точки, чтобы строки были одной длины
 
         # дополняем каждую строку пустыми клетками ('.')
         return list(map(lambda x: x.ljust(max_width, '.'), level_map))
@@ -61,6 +63,9 @@ class Level:
                     new_player = character_module.Radish(self.player_image, (x, y), (50, 50), 70, player_group, all_sprites)
                 elif self.data_level[y][x] == '/':
                     tile_module.Tile(self.tile_images['house'], (x, y), (50, 50), control_point_group, tile_group, all_sprites)
+                elif self.data_level[y][x] == '-':
+                    tile_module.Tile(self.tile_images['empty'], (x, y), (50, 50), enemy_group, all_sprites)
+
 
         # вернем игрока, а также размер поля в клетках
         return new_player, x, y

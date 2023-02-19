@@ -53,8 +53,8 @@ def game_over(screen, background_game_img):
                 running = False
             if event.type == pygame.KEYDOWN and event.key == pygame.K_a:
                 running = False
-                game()
-        screen.blit(background_game_img, (12, 0))
+                game(screen, background_game_img)
+        screen.blit(background_game_img, (-1, 0))
         pygame.display.flip()
 
 
@@ -74,7 +74,7 @@ def game(screen, background_game_img):
         screen.blit(background_game_img, (0, 0))
         if not player_group:
             running = False
-            game_over(screen, background_game_img)
+            game_over(screen, gameover_image)
         # изменяем ракурс камеры
         camera.update(player, width, height)
         # обновляем положение всех спрайтов
@@ -84,9 +84,9 @@ def game(screen, background_game_img):
         player.check_collide(platform_group, enemy_group)
         if player.go_in_house(control_point_group):
             running = False
-            win(screen, background_game_img)
+            win(screen, win_image)
         all_sprites.update()
-        print_text(("Score:" + str(score)), 560, 10)
+        # print_text(("Score:" + str(score)), 560, 10)
 
         # def count_scores(screen, ???):
         #     global score
@@ -111,6 +111,7 @@ if __name__ == '__main__':
     pygame.init()
     background_game_img = pygame.image.load("data/background.png")
     win_image = pygame.image.load('data/win.jpg')
+    gameover_image = pygame.image.load('data/gameover_image.jpg')
     size = width, height = 700, 400
     screen = pygame.display.set_mode(size)
     clock = pygame.time.Clock()
