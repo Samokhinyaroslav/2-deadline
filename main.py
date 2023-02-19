@@ -3,9 +3,6 @@ import pygame_menu
 from level import *
 import character as character_module
 import tile as tile_module
-# import random
-# from os import path
-# import time
 
 
 def create_theme_menu():
@@ -62,7 +59,6 @@ def game_over(screen, background_game_img):
 
 
 def game(screen, background_game_img):
-    # создадим группу, содержащую все спрайты
     FPS = 60
     tick = 0
     clock = pygame.time.Clock()
@@ -78,35 +74,15 @@ def game(screen, background_game_img):
         if not player_group:
             running = False
             game_over(screen, gameover_image)
-        # изменяем ракурс камеры
         camera.update(player, width, height)
-        # обновляем положение всех спрайтов
         for sprite in all_sprites:
             camera.apply(sprite)
         all_sprites.update()
         player.check_collide(platform_group, enemy_group)
         if player.go_in_house(control_point_group):
-            # setDefaults()
-            # pygame.display.set_caption("Main Menu")
-            # run = True
-            # bright_green = (0, 255, 0)
-            # green = (0, 200, 0)
-            # screen.fill((163, 163, 194))
-            #
-            # print('oxer')
             running = False
             win(screen, win_image)
         all_sprites.update()
-        # print_text(("Score:" + str(score)), 560, 10)
-
-        # def count_scores(screen, ???):
-        #     global score
-        #
-        #     if # редиска каcается моентки:
-        #         score += 1
-        #     else:
-        #         score = score
-                ## Эту функцию скорее всего нужно перенести выше функции game, вместе с переменной score
 
 
         tiles_group.draw(screen)
@@ -123,7 +99,6 @@ if __name__ == '__main__':
     background_game_img = pygame.image.load("data/background.png")
     win_image = pygame.image.load('data/windik.jpg')
     gameover_image = pygame.image.load("data/gameover_image.jpg")
-    # win_image = pygame.image.load('data/win.jpg')
     size = width, height = 700, 400
     screen = pygame.display.set_mode(size)
     clock = pygame.time.Clock()
