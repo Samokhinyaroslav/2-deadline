@@ -1,4 +1,3 @@
-import pygame
 import pygame_menu
 from level import *
 import character as character_module
@@ -62,7 +61,6 @@ def game(screen, background_game_img):
     FPS = 60
     tick = 0
     clock = pygame.time.Clock()
-    score = 0
     running = True
     while running:
         for event in pygame.event.get():
@@ -102,7 +100,7 @@ if __name__ == '__main__':
     size = width, height = 700, 400
     screen = pygame.display.set_mode(size)
     clock = pygame.time.Clock()
-    pygame.display.set_caption('Редиска')
+    pygame.display.set_caption('Beat me')
     all_sprites = pygame.sprite.Group()
     tiles_group = pygame.sprite.Group()
     platform_group = pygame.sprite.Group()

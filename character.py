@@ -1,7 +1,6 @@
 import pygame
 
 
-
 class Radish(pygame.sprite.Sprite):
     is_alive = True
     on_ground = False
@@ -18,7 +17,6 @@ class Radish(pygame.sprite.Sprite):
             size[0] * pos[0] + 15, size[1] * pos[1] + 5)
 
     def walk(self, event):
-        # сделать через флажки
         if event.type == pygame.KEYDOWN and event.type != pygame.KEYUP:
             if event.key == pygame.K_a:
                 self.rect.x -= self.speed
@@ -31,9 +29,6 @@ class Radish(pygame.sprite.Sprite):
         if self.on_ground:
             self.rect.y -= self.power_jump
 
-
-    def pick_up_coins(self, группа_монет):  # ЯРИК СДЕЛАЙ!!
-        pass
 
     def go_in_house(self, control_point_group):
         if pygame.sprite.spritecollideany(self, control_point_group):

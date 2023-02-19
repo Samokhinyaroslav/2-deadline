@@ -15,8 +15,6 @@ def load_image(name, colorkey=None):
         if colorkey == -1:
             colorkey = image.get_at((0, 0))
         image.set_colorkey(colorkey)
-    # else:
-    #     image = image.convert_alpha()
     return image
 
 
@@ -43,9 +41,9 @@ class Level:
             level_map = [line.strip() for line in mapFile]
 
         # и подсчитываем максимальную длину
-        max_width = max(map(len, level_map))  # спавнятся точки, чтобы строки были одной длины
+        max_width = max(map(len, level_map))
 
-        # дополняем каждую строку пустыми клетками ('.')
+        # спавнятся точки, чтобы строки были одной длины
         return list(map(lambda x: x.ljust(max_width, '.'), level_map))
 
     def generate_level(self, tile_module, character_module, player_group, enemy_group, tile_group, platform_group, control_point_group, all_sprites):
@@ -58,16 +56,18 @@ class Level:
                 elif self.data_level[y][x] == '+':
                     tile_module.Tile(self.tile_images['empty'], (x, y), (50, 50), tile_group, all_sprites)
                     character_module.Grater(self.grater_image, (x, y), (50, 50), 1.5, enemy_group, all_sprites)
+
                 elif self.data_level[y][x] == '@':
                     tile_module.Tile(self.tile_images['empty'], (x, y), (50, 50), tile_group, all_sprites)
                     new_player = character_module.Radish(self.player_image, (x, y), (50, 50), 70, player_group, all_sprites)
+
                 elif self.data_level[y][x] == '/':
                     tile_module.Tile(self.tile_images['house'], (x, y), (50, 50), control_point_group, tile_group, all_sprites)
+
                 elif self.data_level[y][x] == '-':
                     tile_module.Tile(self.tile_images['empty'], (x, y), (50, 50), enemy_group, all_sprites)
 
 
-        # вернем игрока, а также размер поля в клетках
         return new_player, x, y
 
 class Camera:
