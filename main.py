@@ -3,6 +3,9 @@ import pygame_menu
 from level import *
 import character as character_module
 import tile as tile_module
+# import random
+# from os import path
+# import time
 
 
 def create_theme_menu():
@@ -47,6 +50,7 @@ def win(screen, win_image):
 
 def game_over(screen, background_game_img):
     running = True
+    print('over')
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -83,6 +87,14 @@ def game(screen, background_game_img):
         all_sprites.update()
         player.check_collide(platform_group, enemy_group)
         if player.go_in_house(control_point_group):
+            # setDefaults()
+            # pygame.display.set_caption("Main Menu")
+            # run = True
+            # bright_green = (0, 255, 0)
+            # green = (0, 200, 0)
+            # screen.fill((163, 163, 194))
+            #
+            # print('oxer')
             running = False
             win(screen, win_image)
         all_sprites.update()
@@ -111,7 +123,8 @@ if __name__ == '__main__':
     pygame.init()
     background_game_img = pygame.image.load("data/background.png")
     win_image = pygame.image.load('data/win.jpg')
-    gameover_image = pygame.image.load('data/gameover_image.jpg')
+    gameover_image = pygame.image.load("data/gameover_image.jpg")
+    # win_image = pygame.image.load('data/win.jpg')
     size = width, height = 700, 400
     screen = pygame.display.set_mode(size)
     clock = pygame.time.Clock()
