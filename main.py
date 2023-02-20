@@ -61,15 +61,20 @@ def game_over(screen, background_game_img):
 def game(screen, background_game_img):
     FPS = 60
     tick = 0
+    count_jumps = 0
     clock = pygame.time.Clock()
     running = True
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == pygame.KEYDOWN and event.type != pygame.KEYUP:
+                if event.key == pygame.K_SPACE:
+                    count_jumps += 1
             player_group.update(event)
         screen.fill((0, 0, 0))
         screen.blit(background_game_img, (0, 0))
+        print_text(("Score:" + str(count_jumps)), 560, 10)
         if not player_group:
             running = False
             game_over(screen, gameover_image)
@@ -77,6 +82,7 @@ def game(screen, background_game_img):
         for sprite in all_sprites:
             camera.apply(sprite)
         all_sprites.update()
+
         player.check_collide(platform_group, enemy_group)
         if player.go_in_house(control_point_group):
             running = False

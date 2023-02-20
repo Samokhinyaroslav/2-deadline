@@ -6,7 +6,6 @@ class Radish(pygame.sprite.Sprite):
     on_ground = False
     power_jump = 150
     gravity = 3
-    coins = 0
     is_in_house = False
 
     def __init__(self, image, pos, size, speed, *group):
